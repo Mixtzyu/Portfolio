@@ -158,7 +158,8 @@ export const projects = [
     title: "Auto Diari",
     badge: "Personal Project",
     type: "Static Multi-Page Website — Learning Project",
-    website: "",
+    website: "https://projekti-final-html-css.vercel.app/",
+    repository: "https://github.com/Mixtzyu/Projekti-final-html-css",
     source: "Frontend fundamentals project — 2025",
     description:
       "A static multi-page car dealership website built with only HTML and CSS, without JavaScript, frameworks, or backend logic. The site includes a homepage with a video embed and car grid, an about page, a contact page, a buy page, and a register form (UI only — no form functionality). This project represents my earliest understanding of web development fundamentals.",
