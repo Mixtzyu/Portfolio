@@ -46,7 +46,7 @@ export const projects = [
       {
         label: "Mobile storefront",
         src: "/images/projects/diari-1-euro/mobile-home.jpg",
-        variant: "mobile",
+        variant: "mobile-long",
       },
       {
         label: "Image optimization before",
@@ -87,17 +87,27 @@ export const projects = [
       "Cloudflare-connected domain and deployment setup",
     ],
     learned:
-      "This project helped me improve my ability to design and build professional business websites, structure landing pages, present services clearly, and create responsive layouts. It also became part of founding RYDE-0, a business digitalization agency built with my four friends.",
+      "This project helped me improve my ability to design and build professional business websites, structure landing pages, present services clearly, and create responsive layouts. It also became the foundation of founding RYDE-0, a business digitalization agency built together with three of my friends.",
     media: [
       {
-        label: "RYDE-0 identity",
-        src: "/images/projects/ryde-zero/ryde-logo-large.png",
-        variant: "square",
+        label: "Hero Section",
+        src: "/images/projects/ryde-zero/hero-desktop.png",
+        variant: "wide",
       },
       {
-        label: "Navigation brand asset",
-        src: "/images/projects/ryde-zero/ryde-logo.png",
-        variant: "standard",
+        label: "Services Architecture",
+        src: "/images/projects/ryde-zero/services-grid.png",
+        variant: "wide",
+      },
+      {
+        label: "Client Onboarding Flow",
+        src: "/images/projects/ryde-zero/contact-form.png",
+        variant: "wide",
+      },
+      {
+        label: "Mobile Experience",
+        src: "/images/projects/ryde-zero/mobile-view.png",
+        variant: "mobile",
       },
       {
         label: "Team / contributor image",
@@ -108,8 +118,8 @@ export const projects = [
   },
   {
     title: "Weather App",
-    badge: "API Project",
-    type: "Frontend / API Project",
+    badge: "Personal Project",
+    type: "Frontend / API Project — In Development",
     website: "https://projekti-final-js.vercel.app/",
     repository: "https://github.com/Mixtzyu/Projekti-final-js-",
     source: "Frontend practice project",
@@ -146,8 +156,8 @@ export const projects = [
   },
   {
     title: "Auto Diari",
-    badge: "HTML & CSS",
-    type: "Static Multi-Page Website",
+    badge: "Personal Project",
+    type: "Static Multi-Page Website — Learning Project",
     website: "",
     source: "Frontend fundamentals project — 2025",
     description:

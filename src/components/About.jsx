@@ -1,16 +1,23 @@
+import { useReveal, useRevealAll } from "../hooks/useReveal.js";
 import SectionHeading from "./SectionHeading.jsx";
 
 function About() {
+  const headingRef = useReveal();
+  const textRef = useReveal({ rootMargin: "0px 0px -40px 0px" });
+  const statsRef = useRevealAll();
+
   return (
     <section id="about" className="section-shell">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-        <SectionHeading
-          eyebrow="About"
-          title="About Me"
-          subtitle="A self-taught developer building toward stronger foundations in computer science, software engineering, and artificial intelligence."
-        />
+        <div ref={headingRef} className="reveal">
+          <SectionHeading
+            eyebrow="About"
+            title="About Me"
+            subtitle="A self-taught developer building toward stronger foundations in computer science, software engineering, and artificial intelligence."
+          />
+        </div>
 
-        <div className="space-y-6 text-base leading-8 text-zinc-400">
+        <div ref={textRef} className="reveal reveal-delay-2 space-y-6 text-base leading-8 text-zinc-400">
           <p>
             I am a self-taught developer from Kosovo with a strong interest in
             computer science, software engineering, and artificial intelligence.
@@ -30,17 +37,17 @@ function About() {
             exploring the future of AI-powered development.
           </p>
 
-          <div className="grid gap-4 pt-2 sm:grid-cols-3">
+          <div ref={statsRef} className="grid gap-4 pt-2 sm:grid-cols-3">
             {[
-              ["3+", "Project areas"],
+              ["2", "Live projects shipped"],
               ["2024", "Started coding"],
-              ["CS + AI", "University focus"],
+              ["DS & AI", "University focus"],
             ].map(([value, label]) => (
               <div
                 key={label}
-                className="rounded-lg border border-line bg-white/[0.035] p-5"
+                className="reveal reveal-scale rounded-lg border border-line bg-white/[0.035] p-5 transition hover:border-amber-border hover:bg-amber-muted"
               >
-                <p className="text-2xl font-light text-paper">{value}</p>
+                <p className="text-2xl font-light text-amber">{value}</p>
                 <p className="mt-1 text-sm text-zinc-500">{label}</p>
               </div>
             ))}

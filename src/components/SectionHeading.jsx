@@ -6,7 +6,7 @@ function SectionHeading({ eyebrow, title, subtitle, align = "left" }) {
       }`}
     >
       {eyebrow ? (
-        <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-zinc-500">
+        <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-amber">
           {eyebrow}
         </p>
       ) : null}

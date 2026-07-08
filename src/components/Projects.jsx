@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SectionHeading from "./SectionHeading.jsx";
 import { projects } from "../data/projects.js";
+import { useReveal } from "../hooks/useReveal.js";
 
 const frameRatio = {
   wide: "aspect-[16/9]",
   standard: "aspect-[4/3]",
   mobile: "aspect-[9/16]",
+  "mobile-long": "aspect-[9/20]", // for very tall scroll screenshots
   square: "aspect-square",
   portrait: "aspect-[3/4]",
 };
@@ -13,7 +15,9 @@ const frameRatio = {
 function MediaFrame({ item, onOpen }) {
   const ratio = frameRatio[item.variant] ?? frameRatio.standard;
   const imageFit =
-    item.variant === "mobile" || item.variant === "standard"
+    item.variant === "mobile"
+      ? "object-cover object-top" // crops long screenshots to phone height
+      : item.variant === "standard" || item.variant === "mobile-long" || item.variant === "portrait" || item.variant === "wide"
       ? "object-contain"
       : "object-cover";
   const frame = (
@@ -108,12 +112,16 @@ function ImageLightbox({ image, onClose }) {
             Close
           </button>
         </div>
-        <div className="max-h-[calc(92vh-3.5rem)] overflow-auto bg-black p-3">
+        <div className="flex max-h-[calc(92vh-3.5rem)] justify-center overflow-auto bg-black p-3">
           <img
             src={image.src}
             alt={image.label}
             decoding="async"
-            className="mx-auto max-h-[calc(92vh-5.5rem)] w-auto max-w-full rounded-md object-contain"
+            className={
+              image.variant === "mobile"
+                ? "h-[calc(92vh-5.5rem)] w-auto max-w-full aspect-[9/19.5] rounded-md object-cover object-top"
+                : "mx-auto max-h-[calc(92vh-5.5rem)] w-auto max-w-full rounded-md object-contain"
+            }
           />
         </div>
       </div>
@@ -124,16 +132,24 @@ function ImageLightbox({ image, onClose }) {
 function ProjectCard({ project, index, onOpenImage }) {
   const mainMedia = project.media[0];
   const supportingMedia = project.media.slice(1);
+  const cardRef = useReveal({ threshold: 0.07, rootMargin: "0px 0px -40px 0px" });
+  const isUpcoming = project.badge === "Upcoming Project";
 
   return (
-    <article className="overflow-hidden rounded-xl border border-line bg-panel/70">
+    <article ref={cardRef} className="reveal overflow-hidden rounded-xl border border-line bg-panel/70">
       <div className="grid gap-px bg-line lg:grid-cols-[0.92fr_1.08fr]">
         <div className="bg-ink p-5 sm:p-7">
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-line bg-white/[0.035] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-400">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <span className="rounded-full border border-line bg-white/[0.035] px-3 py-1 text-xs text-zinc-300">
+            <span
+              className={
+                isUpcoming
+                  ? "rounded-full border border-amber-border bg-amber-muted px-3 py-1 text-xs font-medium text-amber"
+                  : "rounded-full border border-line bg-white/[0.035] px-3 py-1 text-xs text-zinc-300"
+              }
+            >
               {project.badge}
             </span>
           </div>
@@ -189,11 +205,28 @@ function ProjectCard({ project, index, onOpenImage }) {
 
         <div className="bg-black p-4 sm:p-5">
           <MediaFrame item={mainMedia} onOpen={onOpenImage} />
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {supportingMedia.map((item) => (
-              <MediaFrame key={item.label} item={item} onOpen={onOpenImage} />
-            ))}
-          </div>
+          
+          {supportingMedia.length > 0 ? (
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {supportingMedia.map((item) => (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={() => onOpenImage(item)}
+                  className="group flex items-center justify-between rounded-lg border border-line bg-white/[0.035] px-4 py-3.5 text-left transition duration-300 hover:border-amber-border hover:bg-amber-muted"
+                >
+                  <span className="text-sm font-medium text-zinc-300 transition duration-300 group-hover:text-amber">
+                    {item.label}
+                  </span>
+                  <span className="flex h-6 w-6 items-center justify-center rounded-md bg-white/[0.04] text-zinc-500 transition duration-300 group-hover:bg-amber/20 group-hover:text-amber">
+                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                    </svg>
+                  </span>
+                </button>
+              ))}
+            </div>
+          ) : null}
         </div>
       </div>
 
@@ -226,16 +259,20 @@ function ProjectCard({ project, index, onOpenImage }) {
 
 function Projects() {
   const [openImage, setOpenImage] = useState(null);
+  const handleOpen = useCallback((img) => setOpenImage(img), []);
+  const headingRef = useReveal();
 
   return (
     <section id="projects" className="section-shell border-y border-line bg-black/25">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading
-          eyebrow="Projects"
-          title="Featured Projects"
-          subtitle="A selection of projects that show my learning progress, technical skills, and interest in real-world software development."
-          align="center"
-        />
+        <div ref={headingRef} className="reveal">
+          <SectionHeading
+            eyebrow="Projects"
+            title="Featured Projects"
+            subtitle="A selection of projects that show my learning progress, technical skills, and interest in real-world software development."
+            align="center"
+          />
+        </div>
 
         <div className="space-y-7">
           {projects.map((project, index) => (
@@ -243,7 +280,7 @@ function Projects() {
               key={project.title}
               project={project}
               index={index}
-              onOpenImage={setOpenImage}
+              onOpenImage={handleOpen}
             />
           ))}
         </div>
