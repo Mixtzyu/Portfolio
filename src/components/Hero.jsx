@@ -66,7 +66,7 @@ function Hero() {
       <div className="pointer-events-none absolute -right-32 -top-32 -z-10 h-[500px] w-[500px] rounded-full bg-amber-muted blur-[100px]" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-ink to-transparent" />
 
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1fr_0.55fr_0.55fr]">
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-8 lg:grid-cols-[1fr_0.55fr_0.55fr] lg:gap-12">
         {/* ── Text block ── */}
         <div ref={textRef} className="reveal max-w-3xl">
           <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-border bg-amber-muted px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] text-amber">
@@ -102,20 +102,20 @@ function Hero() {
         </div>
 
         {/* ── Profile photo (clickable) ── */}
-        <div ref={photoRef} className="reveal reveal-delay-2 hidden lg:block">
+        <div ref={photoRef} className="reveal reveal-delay-2 mx-auto w-full max-w-[155px] sm:max-w-[185px] lg:block lg:max-w-none">
           <div className="relative mx-auto max-w-[240px]">
             {/* Amber glow ring */}
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-amber/30 via-transparent to-transparent blur-sm" />
+            <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-amber/25 via-transparent to-transparent blur-sm lg:rounded-2xl" />
             <button
               type="button"
               onClick={() => setPhotoOpen(true)}
               aria-label="Open photo of Diar Ademi"
-              className="group relative block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-amber-border shadow-glow-amber focus:outline-none focus-visible:ring-2 focus-visible:ring-amber/70"
+              className="group relative block aspect-[4/5] w-full cursor-zoom-in overflow-hidden rounded-xl border border-amber-border shadow-glow-amber focus:outline-none focus-visible:ring-2 focus-visible:ring-amber/70 lg:rounded-2xl"
             >
               <img
                 src="/images/diar-profile.jpg"
                 alt="Diar Ademi"
-                className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.03]"
+                className="h-full w-full object-cover object-[50%_18%] transition duration-700 group-hover:scale-[1.03]"
                 loading="eager"
                 decoding="async"
               />

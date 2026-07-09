@@ -24,9 +24,15 @@ function Goals() {
             I am especially interested in full-stack development, AI-powered
             tools, and applications that can have real-world impact.
           </p>
+          <p className="mt-5 text-lg leading-8 text-zinc-400">
+            Alongside university, I want to make RYDE-0 successful, keep
+            improving how we help businesses digitalize their workflows, and
+            build different AI tools that solve practical problems for clients
+            and users.
+          </p>
           <div className="mt-6 h-px w-full bg-gradient-to-r from-amber/40 via-line to-transparent" />
           <p className="mt-4 font-mono text-xs uppercase tracking-[0.18em] text-amber">
-            Data Science &amp; AI · Full-Stack · Real-world impact
+            Data Science &amp; AI / RYDE-0 / AI tools / Real-world impact
           </p>
         </div>
       </div>

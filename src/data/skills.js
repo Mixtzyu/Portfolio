@@ -24,19 +24,15 @@ export const journey = [
   },
   {
     year: "2025",
-    text: "Built small projects, practiced responsive design, and started learning React.",
+    text: "Built small projects, practiced responsive design, started learning React, and created API-based applications such as a Weather App.",
   },
   {
     year: "2026",
-    text: "Worked on DIARI 1 EURO, a real-world Shopify catalog project for a local business.",
+    text: "Used the skills I had learned from programming to build DIARI 1 EURO, a real-world Shopify catalog project for a local business.",
   },
   {
     year: "2026",
-    text: "Built the RYDE-0 website and founded RYDE-0, a business digitalization agency, with my four friends.",
-  },
-  {
-    year: "2026",
-    text: "Built API-based applications such as a Weather App and continued improving full-stack development skills.",
+    text: "Built the RYDE-0 website and founded RYDE-0, a business digitalization agency, with three of my friends.",
   },
   {
     year: "Current Focus",

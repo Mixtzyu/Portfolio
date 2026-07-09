@@ -32,6 +32,13 @@ function About() {
             functional applications.
           </p>
           <p>
+            What motivates me most is seeing an idea become something useful for
+            real people. Working on real business projects has shown me that
+            software is not only about writing code, but also about understanding
+            people, organizing information clearly, and solving practical
+            problems with responsibility.
+          </p>
+          <p>
             My goal is to continue developing strong foundations in computer
             science at university while building meaningful software projects and
             exploring the future of AI-powered development.
